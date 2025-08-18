@@ -1,4 +1,6 @@
 {
+    "name": "sigi/temp-table-bundle",
+    "description" : "Symfony bundle to create temp database",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
@@ -12,13 +14,13 @@
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.3.*",
         "symfony/runtime": "7.3.*",
+        "symfony/webapp-pack": "*",
         "symfony/yaml": "7.3.*"
-    },
-    "require-dev": {
     },
     "config": {
         "allow-plugins": {
             "php-http/discovery": true,
+            "phpro/grumphp": true,
             "symfony/flex": true,
             "symfony/runtime": true
         },
@@ -27,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Sigi\\TempTableBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "Sigi\\Tests\\TempTableBundle\\": "tests/"
         }
     },
     "replace": {
@@ -48,7 +50,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "importmap:install": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -65,5 +68,12 @@
             "allow-contrib": false,
             "require": "7.3.*"
         }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "*",
+        "phpro/grumphp": "*",
+        "phpstan/phpstan": "*",
+        "phpspec/prophecy": "~1.0",
+        "phpspec/prophecy-phpunit": "^2.4"
     }
 }

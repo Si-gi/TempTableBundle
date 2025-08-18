@@ -1,0 +1,23 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\sigi\TempTableBundle\Service\TempTableManager:
+        arguments:
+            $connection: '@doctrine.dbal.default_connection'
+            $logger: '@logger'
+            $tablePrefix: '%temp_table.table_prefix%'
+            $retentionHours: '%temp_table.retention_hours%'
+
+    App\sigi\TempTableBundle\Service\TempTableQuery:
+        arguments:
+            $connection: '@doctrine.dbal.default_connection'
+
+    App\sigi\TempTableBundle\Command\TempTableCleanupCommand: ~
+
+# Configuration example for config/packages/temp_table.yaml
+# temp_table:
+#     retention_hours: 24
+#     table_prefix: 'temp_csv_'
+#     csv_delimiter: ','
