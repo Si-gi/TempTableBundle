@@ -2,9 +2,12 @@
 
 namespace Sigi\TempTableBundle\Service;
 
-use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 use Psr\Log\LoggerInterface;
+use Doctrine\DBAL\Connection;
+use Sigi\TempTableBundle\Exception\CsvStructureException;
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 
 class TempTableManager
 {
@@ -55,22 +58,29 @@ class TempTableManager
     /**
      * Analyzes the structure of the CSV to determine the columns
      */
-    private function analyzeCsvStructure(string $csvFilePath, ?string $delimiter = null): array
+    public function analyzeCsvStructure(string $csvFilePath, ?string $delimiter = null): array
     {
         $delimiter = $delimiter ?? ',';
+        
+        if (!file_exists($csvFilePath)){
+            throw new FileNotFoundException("Csv File not found", 404);
+        }
+
+        if (!is_readable($csvFilePath)){
+            throw new AccessDeniedException("Wrong Permission to read file");
+        }
+        
         $handle = fopen($csvFilePath, 'r');
-        
-        if (!$handle) {
-            throw new \RuntimeException("Unable to open CSV file: {$csvFilePath}");
+        if (!$handle){
+            throw new CsvStructureException(CsvStructureException::FOPEN_ERROR);
         }
-
         // Read the first line for column name
-        $headers = fgetcsv($handle, 0, $delimiter);
-        
-        if (!$headers) {
-            throw new \RuntimeException("Unable to read file headers CSV");
+        //fgetCsv escape parameter default value deprecied in 8.4
+        $headers = fgetcsv($handle, 0, $delimiter, escape: '');
+        if (!$headers)
+        {
+            throw new CsvStructureException(CsvStructureException::FGETCSV_ERROR);
         }
-
         // Analyser quelques lignes pour déterminer les types
         $sampleData = [];
         $sampleCount = 0;
