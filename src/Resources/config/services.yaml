@@ -3,18 +3,18 @@ services:
         autowire: true
         autoconfigure: true
 
-    App\sigi\TempTableBundle\Service\TempTableManager:
+    Sigi\TempTableBundle\Service\TempTableManager:
         arguments:
             $connection: '@doctrine.dbal.default_connection'
             $logger: '@logger'
             $tablePrefix: '%temp_table.table_prefix%'
             $retentionHours: '%temp_table.retention_hours%'
 
-    App\sigi\TempTableBundle\Service\TempTableQuery:
+    Sigi\TempTableBundle\Service\TempTableQuery:
         arguments:
             $connection: '@doctrine.dbal.default_connection'
 
-    App\sigi\TempTableBundle\Command\TempTableCleanupCommand: ~
+    Sigi\TempTableBundle\Command\TempTableCleanupCommand: ~
 
 # Configuration example for config/packages/temp_table.yaml
 # temp_table:

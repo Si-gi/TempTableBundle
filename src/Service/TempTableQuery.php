@@ -21,12 +21,12 @@ class TempTableQuery
     /**
      * Exécute une requête SELECT sur une table temporaire
      */
-    public function query(string $tableName, array $conditions = [], ?int $limit = null, int $offset = 0): array
+    public function query(string $tableName, array $conditions = [], ?int $limit = null, int $offset = 0): QueryBuilder
     {
         $qb = $this->createSelectQueryBuilder($tableName)
             ->select('*');
 
-        $this->addConditions($qb, $conditions);
+        // $this->addConditions($qb, $conditions);
 
         if ($limit !== null) {
             $qb->setMaxResults($limit);
@@ -35,12 +35,13 @@ class TempTableQuery
         if ($offset > 0) {
             $qb->setFirstResult($offset);
         }
+        return $qb;
 
-        return $qb->executeQuery()->fetchAllAssociative();
+        // return $qb->executeQuery()->fetchAllAssociative();
     }
 
     /**
-     * Compte les enregistrements
+     * Count rows
      */
     public function count(string $tableName, array $conditions = []): int
     {
@@ -175,13 +176,15 @@ class TempTableQuery
     /**
      * Ajoute des conditions WHERE simples au QueryBuilder
      */
-    private function addConditions(QueryBuilder $qb, array $conditions): void
+    public function addConditions(QueryBuilder $qb, array $conditions): QueryBuilder
     {
         foreach ($conditions as $column => $value) {
             $paramName = 'param_' . $column;
             $qb->andWhere($this->quoteName($column) . ' = :' . $paramName)
                ->setParameter($paramName, $value);
         }
+
+        return $qb;
     }
 
     /**

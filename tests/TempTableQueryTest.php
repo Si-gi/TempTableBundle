@@ -78,6 +78,19 @@ class TempTableQueryTest extends TestCase
         $this->assertSame($this->queryBuilderMock, $result);
     }
 
+    public function testAddConditions(): void
+    {
+        $this->connectionMock
+            ->method('quoteIdentifier')
+            ->willReturnCallback(fn($column) => '"' . $column . '"');
+
+        $conditions = ["name" => 'john', 'lastname' => 'doe'];
+        $this->queryBuilderMock->expects($this->exactly(2))->method('andWhere')->willReturn($this->queryBuilderMock);
+        $this->queryBuilderMock->expects($this->exactly(2))->method('setParameter')->willReturn($this->queryBuilderMock);
+
+        $this->tempTableQuery->addConditions($this->queryBuilderMock, $conditions);
+
+    }
     public function testCount(): void
     {
         $result = $this->tempTableQuery->count('test_table');

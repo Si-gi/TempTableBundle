@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Sigi\TempTableBundle\DependencyInjection\TempTableExtension;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
-class SigiTempTableBundle extends Bundle
+class TempTableBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {

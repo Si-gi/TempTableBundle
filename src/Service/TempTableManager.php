@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bundle\TempTableBundle\Service;
+namespace Sigi\TempTableBundle\Service;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
