@@ -15,7 +15,11 @@ services:
             $connection: '@doctrine.dbal.default_connection'
 
     Sigi\TempTableBundle\Command\TempTableCleanupCommand: ~
-
+    Sigi\TempTableBundle\Service\TypeGuesser: ~
+    Sigi\TempTableBundle\Service\Structures\TableFactory:
+        arguments:
+            $rowToAnalyse: 100
+            $typeGuesser: '@Sigi\TempTableBundle\Service\TypeGuesser'
 # Configuration example for config/packages/temp_table.yaml
 # temp_table:
 #     retention_hours: 24

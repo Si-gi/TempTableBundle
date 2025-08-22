@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Sigi\TempTableBundle\Service;
 
@@ -27,7 +27,8 @@ class TempTableQueryHelper
         int $perPage = 50
     ): array {
         $qb = $this->tempTableQuery->createQueryBuilder($tableName)
-            ->select('*');
+            ->select('*')
+        ;
 
         // Ajouter les filtres
         $this->applyFilters($qb, $filters);
@@ -40,7 +41,7 @@ class TempTableQueryHelper
         $total = (int) $countQb->select('COUNT(*)')->executeQuery()->fetchOne();
 
         // Appliquer la pagination
-        if ($page !== null) {
+        if (null !== $page) {
             $offset = ($page - 1) * $perPage;
             $qb->setFirstResult($offset)->setMaxResults($perPage);
         }
@@ -50,7 +51,7 @@ class TempTableQueryHelper
             'total' => $total,
             'page' => $page,
             'perPage' => $perPage,
-            'totalPages' => $page ? ceil($total / $perPage) : 1
+            'totalPages' => $page ? ceil($total / $perPage) : 1,
         ];
     }
 
@@ -69,7 +70,7 @@ class TempTableQueryHelper
 
         // Ajouter les agrégations
         foreach ($aggregations as $alias => $expression) {
-            $selectParts[] = $expression . ' as ' . $alias;
+            $selectParts[] = $expression.' as '.$alias;
         }
 
         $qb->select(implode(', ', $selectParts));
@@ -88,12 +89,13 @@ class TempTableQueryHelper
     private function applyFilters(QueryBuilder $qb, array $filters): void
     {
         foreach ($filters as $column => $filter) {
-            if (is_array($filter)) {
+            if (\is_array($filter)) {
                 $this->applyComplexFilter($qb, $column, $filter);
             } else {
                 // Filtre simple
-                $qb->andWhere($this->quoteName($column) . ' = :' . $column)
-                   ->setParameter($column, $filter);
+                $qb->andWhere($this->quoteName($column).' = :'.$column)
+                    ->setParameter($column, $filter)
+                ;
             }
         }
     }
@@ -104,61 +106,71 @@ class TempTableQueryHelper
     private function applyComplexFilter(QueryBuilder $qb, string $column, array $filter): void
     {
         $quotedColumn = $this->quoteName($column);
-        
+
         if (isset($filter['operator'])) {
-            $paramName = $column . '_value';
-            
+            $paramName = $column.'_value';
+
             switch ($filter['operator']) {
                 case 'like':
-                    $qb->andWhere($quotedColumn . ' LIKE :' . $paramName)
-                       ->setParameter($paramName, '%' . $filter['value'] . '%');
+                    $qb->andWhere($quotedColumn.' LIKE :'.$paramName)
+                        ->setParameter($paramName, '%'.$filter['value'].'%')
+                    ;
                     break;
-                    
+
                 case 'gt':
-                    $qb->andWhere($quotedColumn . ' > :' . $paramName)
-                       ->setParameter($paramName, $filter['value']);
+                    $qb->andWhere($quotedColumn.' > :'.$paramName)
+                        ->setParameter($paramName, $filter['value'])
+                    ;
                     break;
-                    
+
                 case 'gte':
-                    $qb->andWhere($quotedColumn . ' >= :' . $paramName)
-                       ->setParameter($paramName, $filter['value']);
+                    $qb->andWhere($quotedColumn.' >= :'.$paramName)
+                        ->setParameter($paramName, $filter['value'])
+                    ;
                     break;
-                    
+
                 case 'lt':
-                    $qb->andWhere($quotedColumn . ' < :' . $paramName)
-                       ->setParameter($paramName, $filter['value']);
+                    $qb->andWhere($quotedColumn.' < :'.$paramName)
+                        ->setParameter($paramName, $filter['value'])
+                    ;
                     break;
-                    
+
                 case 'lte':
-                    $qb->andWhere($quotedColumn . ' <= :' . $paramName)
-                       ->setParameter($paramName, $filter['value']);
+                    $qb->andWhere($quotedColumn.' <= :'.$paramName)
+                        ->setParameter($paramName, $filter['value'])
+                    ;
                     break;
-                    
+
                 case 'in':
-                    $qb->andWhere($quotedColumn . ' IN (:' . $paramName . ')')
-                       ->setParameter($paramName, $filter['value'], \Doctrine\DBAL\ArrayParameterType::STRING);
+                    $qb->andWhere($quotedColumn.' IN (:'.$paramName.')')
+                        ->setParameter($paramName, $filter['value'], \Doctrine\DBAL\ArrayParameterType::STRING)
+                    ;
                     break;
-                    
+
                 case 'between':
-                    $qb->andWhere($quotedColumn . ' BETWEEN :' . $column . '_min AND :' . $column . '_max')
-                       ->setParameter($column . '_min', $filter['min'])
-                       ->setParameter($column . '_max', $filter['max']);
+                    $qb->andWhere($quotedColumn.' BETWEEN :'.$column.'_min AND :'.$column.'_max')
+                        ->setParameter($column.'_min', $filter['min'])
+                        ->setParameter($column.'_max', $filter['max'])
+                    ;
                     break;
             }
         } elseif (isset($filter['min']) || isset($filter['max'])) {
             // Filtre de plage
             if (isset($filter['min'])) {
-                $qb->andWhere($quotedColumn . ' >= :' . $column . '_min')
-                   ->setParameter($column . '_min', $filter['min']);
+                $qb->andWhere($quotedColumn.' >= :'.$column.'_min')
+                    ->setParameter($column.'_min', $filter['min'])
+                ;
             }
             if (isset($filter['max'])) {
-                $qb->andWhere($quotedColumn . ' <= :' . $column . '_max')
-                   ->setParameter($column . '_max', $filter['max']);
+                $qb->andWhere($quotedColumn.' <= :'.$column.'_max')
+                    ->setParameter($column.'_max', $filter['max'])
+                ;
             }
         } elseif (isset($filter['values'])) {
             // Filtre IN
-            $qb->andWhere($quotedColumn . ' IN (:' . $column . '_values)')
-               ->setParameter($column . '_values', $filter['values'], \Doctrine\DBAL\ArrayParameterType::STRING);
+            $qb->andWhere($quotedColumn.' IN (:'.$column.'_values)')
+                ->setParameter($column.'_values', $filter['values'], \Doctrine\DBAL\ArrayParameterType::STRING)
+            ;
         }
     }
 
@@ -174,6 +186,6 @@ class TempTableQueryHelper
 
     private function quoteName(string $name): string
     {
-        return '"' . $name . '"';
+        return '"'.$name.'"';
     }
 }

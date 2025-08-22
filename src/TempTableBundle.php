@@ -1,12 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Sigi\TempTableBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Sigi\TempTableBundle\DependencyInjection\TempTableExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class TempTableBundle extends Bundle
 {

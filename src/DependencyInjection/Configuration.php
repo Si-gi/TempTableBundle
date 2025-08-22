@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Sigi\TempTableBundle\DependencyInjection;
 
@@ -14,19 +14,20 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->integerNode('retention_hours')
-                    ->defaultValue(24)
-                    ->info('Numbers of hours to keep temp tables')
-                ->end()
-                ->scalarNode('table_prefix')
-                    ->defaultValue('temp_csv_')
-                    ->info('Prefix for temp teables')
-                ->end()
-                ->scalarNode('csv_delimiter')
-                    ->defaultValue(',')
-                    ->info('default delimiter')
-                ->end()
-            ->end();
+            ->integerNode('retention_hours')
+            ->defaultValue(24)
+            ->info('Numbers of hours to keep temp tables')
+            ->end()
+            ->scalarNode('table_prefix')
+            ->defaultValue('temp_csv_')
+            ->info('Prefix for temp teables')
+            ->end()
+            ->scalarNode('csv_delimiter')
+            ->defaultValue(',')
+            ->info('default delimiter')
+            ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }

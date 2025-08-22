@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace Sigi\TempTableBundle\Service;
 
 use Doctrine\DBAL\Connection;
@@ -24,19 +25,20 @@ class TempTableQuery
     public function query(string $tableName, array $conditions = [], ?int $limit = null, int $offset = 0): QueryBuilder
     {
         $qb = $this->createSelectQueryBuilder($tableName)
-            ->select('*');
+            ->select('*')
+        ;
 
         // $this->addConditions($qb, $conditions);
 
-        if ($limit !== null) {
+        if (null !== $limit) {
             $qb->setMaxResults($limit);
         }
 
         if ($offset > 0) {
             $qb->setFirstResult($offset);
         }
-        return $qb;
 
+        return $qb;
         // return $qb->executeQuery()->fetchAllAssociative();
     }
 
@@ -46,7 +48,8 @@ class TempTableQuery
     public function count(string $tableName, array $conditions = []): int
     {
         $qb = $this->createSelectQueryBuilder($tableName)
-            ->select('COUNT(*)');
+            ->select('COUNT(*)')
+        ;
 
         $this->addConditions($qb, $conditions);
 
@@ -95,7 +98,8 @@ class TempTableQuery
             ->from('information_schema.columns')
             ->where('table_name = :table_name')
             ->orderBy('ordinal_position')
-            ->setParameter('table_name', $tableName);
+            ->setParameter('table_name', $tableName)
+        ;
 
         return $qb->executeQuery()->fetchAllAssociative();
     }
@@ -106,22 +110,23 @@ class TempTableQuery
     public function search(string $tableName, string $searchTerm, array $searchColumns, ?int $limit = null): array
     {
         $qb = $this->createSelectQueryBuilder($tableName)
-            ->select('*');
+            ->select('*')
+        ;
 
         if (!empty($searchColumns)) {
             $orConditions = [];
             foreach ($searchColumns as $index => $column) {
-                $paramName = 'search_' . $index;
+                $paramName = 'search_'.$index;
                 $orConditions[] = $qb->expr()->like(
                     $this->quoteName($column),
-                    ':' . $paramName
+                    ':'.$paramName
                 );
-                $qb->setParameter($paramName, '%' . $searchTerm . '%');
+                $qb->setParameter($paramName, '%'.$searchTerm.'%');
             }
             $qb->where($qb->expr()->or(...$orConditions));
         }
 
-        if ($limit !== null) {
+        if (null !== $limit) {
             $qb->setMaxResults($limit);
         }
 
@@ -134,16 +139,17 @@ class TempTableQuery
     public function getColumnStatistics(string $tableName, string $column): array
     {
         $quotedColumn = $this->quoteName($column);
-        
+
         $qb = $this->connection->createQueryBuilder()
             ->select(
                 'COUNT(*) as total',
-                'COUNT(DISTINCT ' . $quotedColumn . ') as unique_values',
-                'COUNT(' . $quotedColumn . ') as non_null_values',
-                'MIN(' . $quotedColumn . ') as min_value',
-                'MAX(' . $quotedColumn . ') as max_value'
+                'COUNT(DISTINCT '.$quotedColumn.') as unique_values',
+                'COUNT('.$quotedColumn.') as non_null_values',
+                'MIN('.$quotedColumn.') as min_value',
+                'MAX('.$quotedColumn.') as max_value'
             )
-            ->from($this->quoteName($tableName));
+            ->from($this->quoteName($tableName))
+        ;
 
         return $qb->executeQuery()->fetchAssociative();
     }
@@ -154,10 +160,11 @@ class TempTableQuery
     public function getDistinctValues(string $tableName, string $column, ?int $limit = null): array
     {
         $qb = $this->createSelectQueryBuilder($tableName)
-            ->select('DISTINCT ' . $this->quoteName($column))
-            ->orderBy($this->quoteName($column));
+            ->select('DISTINCT '.$this->quoteName($column))
+            ->orderBy($this->quoteName($column))
+        ;
 
-        if ($limit !== null) {
+        if (null !== $limit) {
             $qb->setMaxResults($limit);
         }
 
@@ -170,7 +177,8 @@ class TempTableQuery
     private function createSelectQueryBuilder(string $tableName): QueryBuilder
     {
         return $this->connection->createQueryBuilder()
-            ->from($this->quoteName($tableName));
+            ->from($this->quoteName($tableName))
+        ;
     }
 
     /**
@@ -179,9 +187,10 @@ class TempTableQuery
     public function addConditions(QueryBuilder $qb, array $conditions): QueryBuilder
     {
         foreach ($conditions as $column => $value) {
-            $paramName = 'param_' . $column;
-            $qb->andWhere($this->quoteName($column) . ' = :' . $paramName)
-               ->setParameter($paramName, $value);
+            $paramName = 'param_'.$column;
+            $qb->andWhere($this->quoteName($column).' = :'.$paramName)
+                ->setParameter($paramName, $value)
+            ;
         }
 
         return $qb;
