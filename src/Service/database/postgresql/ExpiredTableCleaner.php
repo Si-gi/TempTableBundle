@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Sigi\TempTableBundle\Service\Database\Postgresql;
 
 use Psr\Log\LoggerInterface;
-use Sigi\TempTableBundle\Service\TempTableConfig;
+use Sigi\TempTableBundle\Service\Structures\TempTableConfig;
 use Sigi\TempTableBundle\Service\Database\TableCleanerInterface;
 use Sigi\TempTableBundle\Service\Database\TableRegistryInterface;
 use Sigi\TempTableBundle\Service\Database\DatabaseConnectionInterface;

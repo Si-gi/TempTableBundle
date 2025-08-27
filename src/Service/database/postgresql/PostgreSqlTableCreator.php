@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace Sigi\TempTableBundle\Service\Database\Postgresql;
 
 use Psr\Log\LoggerInterface;
-use Sigi\TempTableBundle\Service\TempTableConfig;
+use Sigi\TempTableBundle\Service\Structures\TempTableConfig;
 use Sigi\TempTableBundle\Service\Structures\Table;
 use Sigi\TempTableBundle\Service\Structures\TableFactory;
 use Sigi\TempTableBundle\Service\Database\TableCreatorInterface;

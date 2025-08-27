@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Sigi\TempTableBundle\Service;
+namespace Sigi\TempTableBundle\Service\Structures;
 
 class TempTableConfig
 {
