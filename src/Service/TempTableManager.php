@@ -30,7 +30,6 @@ class TempTableManager
 
     public function createTableFromCsv(string $csvFilePath, string $tableName, ?string $delimiter = ',')
     {
-        $this->connection->executeStatement('DROP TABLE IF EXISTS temp_csv_test');
         $this->initializeRegistry();
 
         try {
@@ -39,18 +38,10 @@ class TempTableManager
             $query = $this->createTableQuery($table);
             $this->connection->executeStatement($query);
 
-            $sql = "SELECT column_name FROM information_schema.columns WHERE table_name = 'temp_csv_test'";
-
-            dump($this->connection->fetchAllAssociative($sql));
-
-            dump('table created');
             $this->logger->info('Table created '.$table->getName());
 
             // Import Data with COPY (faster than INSERT)
-            $this->importCsvData($csvFilePath, $table->getName(), $table, $delimiter);
-            dump('table imported');
-
-            // $this->registerTable($table->getName());
+            $this->importCsvData($csvFilePath, $table, $delimiter);
 
             $this->logger->info("Ttemp table created: {$table->getName()}");
 
@@ -70,14 +61,14 @@ class TempTableManager
         $this->dropTable($table->getFullName());
         $columns = [];
         foreach ($table->getColumns() as $column) {
-            $columns[] = \sprintf('"%s" %s', $column->getName(), $column->getType());
+            $columns[] = \sprintf('"%s" %s DEFAULT NULL', $column->getName(), $column->getType());
         }
 
         $sql = \sprintf(
             'CREATE TABLE IF NOT EXISTS "%s" (
                 %s
             )',
-            $table->getName(),
+            $table->getFullName(),
             implode(",\n                ", $columns)
         );
         dump($sql);
@@ -88,56 +79,35 @@ class TempTableManager
     /**
      * Import data with proper type detection and COPY FROM optimization
      */
-    private function importCsvData(string $csvFilePath, string $tableName, Table $table, ?string $delimiter = null): void
+    private function importCsvData(string $csvFilePath, Table $table, ?string $delimiter = null): void
     {
         $delimiter ??= ',';
 
         $this->connection->beginTransaction();
 
+        // handle 3 cases
         try {
-            dump("COPY temp_csv_test(identifiant_pp, pr__nom_d_exercice, nom_d_exercice, adresse, telephone)
-        FROM '{$csvFilePath}'
-        WITH (FORMAT CSV, HEADER TRUE, DELIMITER ',', NULL '', QUOTE '\"')");
+            if ($this->canUseCopyFrom()) {
+                try {
+                    $this->importCsvViaCopyFrom($csvFilePath, $table, $delimiter);
+                 
+                } catch (\Exception $e) {
+                    $this->importCsvViaBatchInsertTyped($csvFilePath, $table, $delimiter);
+                }
+            } else {
+                $this->importCsvViaBatchInsertTyped($csvFilePath, $table, $delimiter);
+            }
 
-            $this->connection->executeStatement("
-        COPY temp_csv_test(identifiant_pp, pr__nom_d_exercice, nom_d_exercice, adresse, telephone)
-        FROM '{$csvFilePath}'
-        WITH (FORMAT CSV, HEADER TRUE, DELIMITER ',', NULL '', QUOTE '\"')
-    ");
             $this->connection->commit();
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             $this->connection->rollBack();
 
             throw $e;
         }
-        // try {
-        //     dump('Début import, taille fichier:', filesize($csvFilePath));
-
-        //     if ($this->canUseCopyFrom()) {
-        //         dump('COPY FROM disponible, tentative...');
-        //         try {
-        //             $this->importCsvViaCopyFrom($csvFilePath, $tableName, $table, $delimiter);
-        //             dump('COPY FROM réussi !');
-        //         } catch (\Exception $e) {
-        //             dump('COPY FROM échoué, fallback batch insert:', $e->getMessage());
-        //             $this->importCsvViaBatchInsertTyped($csvFilePath, $table, $delimiter);
-        //         }
-        //     } else {
-        //         dump('COPY FROM non disponible, utilisation batch insert');
-        //         $this->importCsvViaBatchInsertTyped($csvFilePath, $table, $delimiter);
-        //     }
-
-        //     $this->connection->commit();
-        //     dump('Transaction committée avec succès');
-        // } catch (\Exception $e) {
-        //     // $this->connection->rollBack();
-        //     dump('Rollback effectué:', $e->getMessage());
-        //     throw $e;
-        // }
     }
 
     /**
-     * Verify if COPY FROM is available
+     * Verify if COPY FROM is available, check driver
      */
     private function canUseCopyFrom(): bool
     {
@@ -152,50 +122,47 @@ class TempTableManager
     }
 
     /**
-     * Import optimisé avec COPY FROM
+     * Optimized import with COPY FROM
      */
-    private function importCsvViaCopyFrom(string $csvFilePath, string $tableName, Table $table, string $delimiter): void
+    private function importCsvViaCopyFrom(string $csvFilePath, Table $table, string $delimiter): void
     {
-        dump('Début import COPY FROM');
-
-        // Essayer la méthode PDO simple en premier (plus fiable)
         try {
-            $this->importCsvViaCopyFromSimple($csvFilePath, $tableName, $table, $delimiter);
-            dump('Import COPY FROM terminé avec succès');
+            $this->importCsvViaCopyFromSimple($csvFilePath, $table, $delimiter);
+            $this->logger->info('Import COPY FROM success');
 
             return;
+        }catch(\Doctrine\DBAL\Exception $e){
+                throw $e;
         } catch (\Exception $e) {
-            dump('Échec PDO COPY FROM, tentative pg_connect:', $e->getMessage());
+            $this->logger->info('function importCsvViaCopyFromSimple failed: '.$e->getMessage());
         }
 
-        // Fallback sur pg_connect seulement si PDO échoue
+        // Fallback pg_connect if PDO fail
         if (\function_exists('pg_connect')) {
             try {
                 $columns = array_map(static fn ($col) => '"'.$col->getName().'"', $table->getColumns()->toArray());
                 $columnList = implode(', ', $columns);
                 $copyCommand = \sprintf(
                     "COPY \"%s\" (%s) FROM %s WITH (FORMAT CSV, HEADER true, DELIMITER '%s', ENCODING 'UTF8')",
-                    $tableName,
+                    $table->getFullName(),
                     $columnList,
                     $csvFilePath,
                     $delimiter
                 );
-                dump($copyCommand);
-
                 $this->importViaPgCopyFrom($copyCommand, $csvFilePath, $delimiter);
 
                 return;
             } catch (\Exception $e) {
-                dump('Échec pg_connect COPY FROM:', $e->getMessage());
+                $this->logger->info('Échec pg_connect COPY FROM: '.$e->getMessage());
             }
         }
 
-        // Si tout échoue, lever une exception pour utiliser le fallback
+        // throw exception to use the fallback
         throw new \RuntimeException('COPY FROM non disponible, utilisation du fallback batch insert');
     }
 
     /**
-     * COPY FROM via les fonctions PostgreSQL natives (recommandé)
+     * COPY FROM with nativ postgresql functions
      */
     private function importViaPgCopyFrom(string $copyCommand, string $csvFilePath, string $delimiter): void
     {
@@ -211,9 +178,8 @@ class TempTableManager
 
         $pgConn = pg_connect($connString);
         if (!$pgConn) {
-            throw new \RuntimeException('Impossible de se connecter à PostgreSQL pour COPY FROM');
+            throw new \RuntimeException('Failed to connect to Postgresql for COPY FROM');
         }
-        dump('Connexion établie');
 
         try {
             // Solution 1: Utiliser COPY FROM avec un fichier temporaire (plus fiable)
@@ -238,8 +204,6 @@ class TempTableManager
         $header = fgetcsv($originalHandle, null, $delimiter);
         array_pop($header);
         array_pop($header);
-
-        dump('Header skipped:', $header);
 
         $lineCount = 0;
         while (($row = fgetcsv($originalHandle, 0, $delimiter)) !== false) {
@@ -277,8 +241,6 @@ class TempTableManager
                 $delimiter
             );
 
-            dump('Commande COPY:', $copyFromFileCommand);
-
             $result = pg_query($pgConn, $copyFromFileCommand);
 
             if (!$result) {
@@ -286,7 +248,7 @@ class TempTableManager
             }
 
             $affectedRows = pg_affected_rows($result);
-            dump("Lignes importées: {$affectedRows}");
+            $this->logger->info("Imported row: {$affectedRows}");
         } finally {
             unlink($tempFile);
         }
@@ -305,50 +267,7 @@ class TempTableManager
     }
 
     /**
-     * COPY FROM via PDO (plus complexe mais plus portable)
-     */
-    private function importViaPdoCopyFrom(string $copyCommand, string $csvFilePath, string $delimiter): void
-    {
-        // Cette approche nécessite des drivers PostgreSQL spéciaux
-        // En pratique, on utilise souvent un fichier temporaire
-
-        $pdo = $this->connection->getNativeConnection();
-
-        // Préparer le contenu CSV pour COPY FROM
-        $handle = fopen($csvFilePath, 'r');
-        $header = fgetcsv($handle, 0, $delimiter); // Skip header
-
-        $tempFile = tempnam(sys_get_temp_dir(), 'csv_import_');
-        $tempHandle = fopen($tempFile, 'w');
-
-        while (($row = fgetcsv($handle, 0, $delimiter)) !== false) {
-            // Nettoyer les données pour PostgreSQL
-            $cleanedRow = array_map(static function ($value) {
-                if (null === $value || '' === $value) {
-                    return ''; // PostgreSQL comprendra comme NULL avec NULL ''
-                }
-
-                return (string) $value;
-            }, $row);
-
-            fputcsv($tempHandle, $cleanedRow, $delimiter);
-        }
-
-        fclose($handle);
-        fclose($tempHandle);
-
-        // Utiliser COPY FROM avec le fichier temporaire
-        $copyCommand = str_replace('FROM STDIN', "FROM '{$tempFile}'", $copyCommand);
-
-        try {
-            $pdo->exec($copyCommand);
-        } finally {
-            unlink($tempFile);
-        }
-    }
-
-    /**
-     * Fallback : Batch inserts avec gestion des types appropriés
+     * Fallback : Batch insert with precises types
      */
     private function importCsvViaBatchInsertTyped(string $csvFilePath, Table $table, string $delimiter): void
     {
@@ -403,22 +322,21 @@ class TempTableManager
         $value = (string) $value;
 
         switch (strtoupper($columnType)) {
-            case 'INTEGER':
+            case TypeGuesser::INTEGER:
                 return false !== filter_var($value, \FILTER_VALIDATE_INT) ? (int) $value : null;
 
-            case 'BIGINT':
-                // Pour les BIGINT, garder en string pour éviter les problèmes de précision PHP
+            case TypeGuesser::BIGINT:
                 return is_numeric($value) ? $value : null;
 
-            case 'DECIMAL':
-            case 'NUMERIC':
+            case TypeGuesser::DECIMAL:
+            case TypeGuesser::NUMERIC:
                 return is_numeric($value) ? $value : null;
 
-            case 'TIMESTAMP':
-            case 'DATE':
-                $timestamp = strtotime($value);
+            // case TypeGuesser::TIMESTAMP:
+            // case TypeGuesser::DATE:
+            //     $timestamp = strtotime($value);
 
-                return false !== $timestamp ? date('Y-m-d H:i:s', $timestamp) : null;
+            //     return false !== $timestamp ? date('Y-m-d H:i:s', $timestamp) : null;
 
             default:
                 return $value;
@@ -480,7 +398,7 @@ class TempTableManager
             case TypeGuesser::BIGINT:
             case TypeGuesser::DECIMAL:
             case TypeGuesser::NUMERIC:
-                // Pour BIGINT et DECIMAL, utiliser STRING pour éviter les problèmes de précision
+                // PDO doesn't have numeric type
                 return \PDO::PARAM_STR;
 
             default:
@@ -572,7 +490,7 @@ class TempTableManager
     /**
      * Version simplifiée et plus robuste de l'import
      */
-    private function importCsvViaCopyFromSimple(string $csvFilePath, string $tableName, Table $table, string $delimiter): void
+    private function importCsvViaCopyFromSimple(string $csvFilePath, Table $table, string $delimiter): void
     {
         // Solution de fallback recommandée : utiliser PDO avec COPY FROM fichier
         $pdo = $this->connection->getNativeConnection();
@@ -583,56 +501,29 @@ class TempTableManager
 
         // Créer un fichier temporaire sans header
         $tempFile = tempnam(sys_get_temp_dir(), 'csv_import_');
-        // $originalHandle = fopen($csvFilePath, 'r');
+        $originalHandle = fopen($csvFilePath, 'r');
         $tempHandle = fopen($tempFile, 'w');
-
         // Skip header
-        // $header = fgetcsv($originalHandle, 0, $delimiter);
+        $header = fgetcsv($originalHandle, 0, $delimiter);
         // dump('Processing file, header:', $header);
-
-        $lineCount = 0;
-        // while (($row = fgetcsv($originalHandle, 0, $delimiter)) !== false) {
-        //     // Ajuster le nombre de colonnes selon la structure
-        //     while(count($row) > count($table->getColumns())) {
-        //         array_pop($row);
-        //     }
-        //     while(count($row) < count($table->getColumns())) {
-        //         $row[] = '';
-        //     }
-
-        //     // Nettoyer les données
-        //     $cleanedRow = array_map(function($value) {
-        //         return $value === null ? '' : (string)$value;
-        //     }, $row);
-
-        //     fputcsv($tempHandle, $cleanedRow, $delimiter, '"');
-        //     $lineCount++;
-        // }
-
         // fclose($originalHandle);
         fclose($tempHandle);
-
-        dump("Fichier préparé avec {$lineCount} lignes");
 
         try {
             $columns = array_map(static fn ($col) => '"'.$col->getName().'"', $table->getColumns()->toArray());
             $columnList = implode(', ', $columns);
-            // $sql = "SELECT column_name FROM information_schema.columns WHERE table_name = 'temp_csv_test'";
 
-            // dump($this->connection->fetchAllAssociative($sql));
-            // Utiliser une requête COPY FROM simple
             $copyCommand = \sprintf(
                 "COPY \"%s\" (%s) FROM '%s' WITH (FORMAT CSV, DELIMITER '%s', NULL '', QUOTE '\"', HEADER true)",
-                $tableName,
+                $table->getFullName(),
                 $columnList,
-                $csvFilePath, // Échapper les backslashes pour Windows
+                $csvFilePath,
                 $delimiter
             );
-
-            dump('Executing COPY command...');
-            dump($copyCommand);
             $result = $this->connection->executeStatement($copyCommand);
-            dump("Import terminé, résultat: {$result}");
+        }catch(\Doctrine\DBAL\Exception $e){
+            dump($e->getMessage());
+            throw new \Doctrine\DBAL\Exception($e->getMessage());
         } finally {
             unlink($tempFile);
         }

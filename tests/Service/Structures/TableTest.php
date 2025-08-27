@@ -56,6 +56,10 @@ class TableTest extends TestCase
 
         $result = $table->getColumnsByName('does_not_exist');
         $this->assertNull($result);
+
+        $table->removeColumn($column);
+        $this->assertFalse($table->getColumns()->contains($column));
+
     }
 
     public function testGetColumnByIndexReturnsNullForInvalidIndex()
@@ -65,5 +69,15 @@ class TableTest extends TestCase
         $table->addColumn(new Column('a'));
         $this->assertNull($table->getColumnByIndex(5));
         $this->assertNull($table->getColumnByIndex(-1));
+    }
+
+    public function testPRefixAndName(): void
+    {
+        $name = "table";
+        $prefix = "pf_";
+        $table = new Table($name, $prefix);
+        $this->assertEquals($name, $table->getName());
+        $this->assertEquals($prefix, $table->getprefix());
+
     }
 }

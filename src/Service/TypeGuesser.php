@@ -13,7 +13,6 @@ class TypeGuesser
     public const TEXT = 'TEXT';
     // const TIMESTAMP = 'TIMESTAMP';
 
-    // Limites pour les types numériques
     private const INT_MAX = 2147483647;
     private const INT_MIN = -2147483648;
     private const BIGINT_MAX = '9223372036854775807';
@@ -138,12 +137,16 @@ class TypeGuesser
     private function determineOverallType(array $individualTypes, int $maxLength): string
     {
         $uniqueTypes = array_unique($individualTypes);
-
         if (1 === \count($uniqueTypes)) {
             return $uniqueTypes[0];
         }
 
-        if (\in_array(self::TEXT, $uniqueTypes, true)) {
+        if (\in_array(self::TEXT, $uniqueTypes, true)
+         || (\in_array(self::VARCHAR, $uniqueTypes, true) && \in_array(self::BIGINT, $uniqueTypes, true))
+        || (\in_array(self::VARCHAR, $uniqueTypes, true) && \in_array(self::INTEGER, $uniqueTypes, true))
+        || (\in_array(self::VARCHAR, $uniqueTypes, true) && \in_array(self::NUMERIC, $uniqueTypes, true))
+        || (\in_array(self::VARCHAR, $uniqueTypes, true) && \in_array(self::DECIMAL, $uniqueTypes, true))
+        ) {
             return self::TEXT;
         }
 
@@ -151,7 +154,10 @@ class TypeGuesser
             return $maxLength <= 255 ? self::VARCHAR : self::TEXT;
         }
 
-        if (\in_array(self::NUMERIC, $uniqueTypes, true)) {
+        if (\in_array(self::NUMERIC, $uniqueTypes, true)
+            || (\in_array(self::DECIMAL, $uniqueTypes, true) && \in_array(self::BIGINT, $uniqueTypes, true))
+             || (\in_array(self::DECIMAL, $uniqueTypes, true) && \in_array(self::INTEGER, $uniqueTypes, true))
+        ) {
             return self::NUMERIC;
         }
 

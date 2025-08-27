@@ -5,7 +5,7 @@ namespace Sigi\TempTableBundle\Service;
 use Doctrine\DBAL\Query\QueryBuilder;
 
 /**
- * Helper pour construire des requêtes complexes sur les tables temporaires
+ * Helper to build requests on temp table
  */
 class TempTableQueryHelper
 {
