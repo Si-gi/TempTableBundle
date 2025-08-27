@@ -9,7 +9,7 @@ use Sigi\TempTableBundle\Service\Database\TableCleanerInterface;
 use Sigi\TempTableBundle\Service\Database\TableCreatorInterface;
 use Sigi\TempTableBundle\Service\Database\TableRegistryInterface;
 
-class TempTableManager
+class TempTableManager2
 {
     public function __construct(
         private TableCreatorInterface $tableCreator,
