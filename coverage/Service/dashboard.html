@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for D:\dev\laragon\www\symfony-temp-table\symfony_temp_table\src\Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=12.3.2" rel="stylesheet" type="text/css">
+  <link href="../_css/billboard.min.css?v=12.3.2" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=12.3.2" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">D:\dev\laragon\www\symfony-temp-table\symfony_temp_table\src</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Service</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classesCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3 style="margin-top: 2rem;">Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#8">Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineStatementWrapper.php.html#8">Sigi\TempTableBundle\Service\Database\DoctrineStatementWrapper</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/DatabaseTableRegistry.php.html#10">Sigi\TempTableBundle\Service\Database\Postgresql\DatabaseTableRegistry</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/ExpiredTableCleaner.php.html#12">Sigi\TempTableBundle\Service\Database\Postgresql\ExpiredTableCleaner</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/PostgreSqlTableCreator.php.html#12">Sigi\TempTableBundle\Service\Database\Postgresql\PostgreSqlTableCreator</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/TypeConverters/BigIntTypeConverter.php.html#6">Sigi\TempTableBundle\Service\Database\TypeConverters\BigIntTypeConverter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/TypeConverters/DecimalTypeConverter.php.html#6">Sigi\TempTableBundle\Service\Database\TypeConverters\DecimalTypeConverter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/TypeConverters/IntegerTypeConverter.php.html#6">Sigi\TempTableBundle\Service\Database\TypeConverters\IntegerTypeConverter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/TypeConverters/PostgreSqlTypeConverter.php.html#8">Sigi\TempTableBundle\Service\Database\TypeConverters\PostgreSqlTypeConverter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/TypeConverters/StringTypeConverter.php.html#6">Sigi\TempTableBundle\Service\Database\TypeConverters\StringTypeConverter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#13">Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/CopyFromImportStrategy.php.html#10">Sigi\TempTableBundle\Service\Strategy\CopyFromImportStrategy</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/StrategyCsvImporter.php.html#10">Sigi\TempTableBundle\Service\Strategy\StrategyCsvImporter</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Structures/TempTableConfig.php.html#6">Sigi\TempTableBundle\Service\Structures\TempTableConfig</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQueryHelper.php.html#10">Sigi\TempTableBundle\Service\TempTableQueryHelper</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQuery.php.html#13">Sigi\TempTableBundle\Service\TempTableQuery</a></td><td class="text-right">30%</td></tr>
+       <tr><td><a href="TypeGuesser.php.html#6">Sigi\TempTableBundle\Service\TypeGuesser</a></td><td class="text-right">67%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3 style="margin-top: 2rem;">Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+         <th class="text-right">Complexity</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="TempTableQueryHelper.php.html#10">Sigi\TempTableBundle\Service\TempTableQueryHelper</a></td><td class="text-right">0.0%</td><td class="text-right">28</td><td class="text-right">812</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#13">Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy</a></td><td class="text-right">0.0%</td><td class="text-right">18</td><td class="text-right">342</td></tr>
+       <tr><td><a href="TempTableQuery.php.html#13">Sigi\TempTableBundle\Service\TempTableQuery</a></td><td class="text-right">30.1%</td><td class="text-right">23</td><td class="text-right">203</td></tr>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#8">Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection</a></td><td class="text-right">0.0%</td><td class="text-right">12</td><td class="text-right">156</td></tr>
+       <tr><td><a href="Strategy/CopyFromImportStrategy.php.html#10">Sigi\TempTableBundle\Service\Strategy\CopyFromImportStrategy</a></td><td class="text-right">0.0%</td><td class="text-right">11</td><td class="text-right">132</td></tr>
+       <tr><td><a href="TypeGuesser.php.html#6">Sigi\TempTableBundle\Service\TypeGuesser</a></td><td class="text-right">67.2%</td><td class="text-right">47</td><td class="text-right">125</td></tr>
+       <tr><td><a href="Database/Postgresql/DatabaseTableRegistry.php.html#10">Sigi\TempTableBundle\Service\Database\Postgresql\DatabaseTableRegistry</a></td><td class="text-right">0.0%</td><td class="text-right">7</td><td class="text-right">56</td></tr>
+       <tr><td><a href="Database/TypeConverters/PostgreSqlTypeConverter.php.html#8">Sigi\TempTableBundle\Service\Database\TypeConverters\PostgreSqlTypeConverter</a></td><td class="text-right">0.0%</td><td class="text-right">6</td><td class="text-right">42</td></tr>
+       <tr><td><a href="Strategy/StrategyCsvImporter.php.html#10">Sigi\TempTableBundle\Service\Strategy\StrategyCsvImporter</a></td><td class="text-right">0.0%</td><td class="text-right">6</td><td class="text-right">42</td></tr>
+       <tr><td><a href="Database/Postgresql/ExpiredTableCleaner.php.html#12">Sigi\TempTableBundle\Service\Database\Postgresql\ExpiredTableCleaner</a></td><td class="text-right">0.0%</td><td class="text-right">5</td><td class="text-right">30</td></tr>
+       <tr><td><a href="Database/Postgresql/PostgreSqlTableCreator.php.html#12">Sigi\TempTableBundle\Service\Database\Postgresql\PostgreSqlTableCreator</a></td><td class="text-right">0.0%</td><td class="text-right">5</td><td class="text-right">30</td></tr>
+       <tr><td><a href="Database/TypeConverters/BigIntTypeConverter.php.html#6">Sigi\TempTableBundle\Service\Database\TypeConverters\BigIntTypeConverter</a></td><td class="text-right">0.0%</td><td class="text-right">4</td><td class="text-right">20</td></tr>
+       <tr><td><a href="Database/TypeConverters/DecimalTypeConverter.php.html#6">Sigi\TempTableBundle\Service\Database\TypeConverters\DecimalTypeConverter</a></td><td class="text-right">0.0%</td><td class="text-right">4</td><td class="text-right">20</td></tr>
+       <tr><td><a href="Database/TypeConverters/IntegerTypeConverter.php.html#6">Sigi\TempTableBundle\Service\Database\TypeConverters\IntegerTypeConverter</a></td><td class="text-right">0.0%</td><td class="text-right">4</td><td class="text-right">20</td></tr>
+       <tr><td><a href="Database/TypeConverters/StringTypeConverter.php.html#6">Sigi\TempTableBundle\Service\Database\TypeConverters\StringTypeConverter</a></td><td class="text-right">0.0%</td><td class="text-right">2</td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2 style="margin-top: 3rem;">Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodsCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3 style="margin-top: 2rem;">Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#10"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#12"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection::executeStatement">executeStatement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#17"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection::prepare">prepare</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#22"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection::fetchFirstColumn">fetchFirstColumn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#27"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection::beginTransaction">beginTransaction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#32"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection::commit">commit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#37"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection::rollBack">rollBack</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#42"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection::supportsCopyFrom">supportsCopyFrom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#52"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection::getConnectionParams">getConnectionParams</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#57"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection::getNativeConnection">getNativeConnection</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineStatementWrapper.php.html#10"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineStatementWrapper::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineStatementWrapper.php.html#12"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineStatementWrapper::bindValue">bindValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/DoctrineStatementWrapper.php.html#17"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineStatementWrapper::executeStatement">executeStatement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/DatabaseTableRegistry.php.html#15"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\DatabaseTableRegistry::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/DatabaseTableRegistry.php.html#20"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\DatabaseTableRegistry::initialize">initialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/DatabaseTableRegistry.php.html#38"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\DatabaseTableRegistry::register">register</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/DatabaseTableRegistry.php.html#55"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\DatabaseTableRegistry::getExpiredTables">getExpiredTables</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/DatabaseTableRegistry.php.html#67"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\DatabaseTableRegistry::unregister">unregister</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/ExpiredTableCleaner.php.html#14"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\ExpiredTableCleaner::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/ExpiredTableCleaner.php.html#21"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\ExpiredTableCleaner::cleanupExpiredTables">cleanupExpiredTables</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/ExpiredTableCleaner.php.html#39"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\ExpiredTableCleaner::dropTable">dropTable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/PostgreSqlTableCreator.php.html#14"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\PostgreSqlTableCreator::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/PostgreSqlTableCreator.php.html#21"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\PostgreSqlTableCreator::createFromCsv">createFromCsv</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/PostgreSqlTableCreator.php.html#35"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\PostgreSqlTableCreator::buildCreateTableQuery">buildCreateTableQuery</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/Postgresql/PostgreSqlTableCreator.php.html#49"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\PostgreSqlTableCreator::dropTableIfExists">dropTableIfExists</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/TypeConverters/BigIntTypeConverter.php.html#8"><abbr title="Sigi\TempTableBundle\Service\Database\TypeConverters\BigIntTypeConverter::convert">convert</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/TypeConverters/DecimalTypeConverter.php.html#8"><abbr title="Sigi\TempTableBundle\Service\Database\TypeConverters\DecimalTypeConverter::convert">convert</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/TypeConverters/IntegerTypeConverter.php.html#8"><abbr title="Sigi\TempTableBundle\Service\Database\TypeConverters\IntegerTypeConverter::convert">convert</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/TypeConverters/PostgreSqlTypeConverter.php.html#12"><abbr title="Sigi\TempTableBundle\Service\Database\TypeConverters\PostgreSqlTypeConverter::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/TypeConverters/PostgreSqlTypeConverter.php.html#22"><abbr title="Sigi\TempTableBundle\Service\Database\TypeConverters\PostgreSqlTypeConverter::convert">convert</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/TypeConverters/PostgreSqlTypeConverter.php.html#28"><abbr title="Sigi\TempTableBundle\Service\Database\TypeConverters\PostgreSqlTypeConverter::getPdoType">getPdoType</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Database/TypeConverters/StringTypeConverter.php.html#8"><abbr title="Sigi\TempTableBundle\Service\Database\TypeConverters\StringTypeConverter::convert">convert</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#15"><abbr title="Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#22"><abbr title="Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy::canHandle">canHandle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#27"><abbr title="Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy::getPriority">getPriority</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#32"><abbr title="Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy::import">import</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#48"><abbr title="Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy::processCsvInBatches">processCsvInBatches</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#68"><abbr title="Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy::convertRowTypes">convertRowTypes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#87"><abbr title="Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy::insertBatch">insertBatch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/CopyFromImportStrategy.php.html#12"><abbr title="Sigi\TempTableBundle\Service\Strategy\CopyFromImportStrategy::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/CopyFromImportStrategy.php.html#17"><abbr title="Sigi\TempTableBundle\Service\Strategy\CopyFromImportStrategy::canHandle">canHandle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/CopyFromImportStrategy.php.html#22"><abbr title="Sigi\TempTableBundle\Service\Strategy\CopyFromImportStrategy::getPriority">getPriority</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/CopyFromImportStrategy.php.html#27"><abbr title="Sigi\TempTableBundle\Service\Strategy\CopyFromImportStrategy::import">import</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/CopyFromImportStrategy.php.html#38"><abbr title="Sigi\TempTableBundle\Service\Strategy\CopyFromImportStrategy::importViaCopyFromDirect">importViaCopyFromDirect</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/CopyFromImportStrategy.php.html#54"><abbr title="Sigi\TempTableBundle\Service\Strategy\CopyFromImportStrategy::importViaPgConnect">importViaPgConnect</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/CopyFromImportStrategy.php.html#82"><abbr title="Sigi\TempTableBundle\Service\Strategy\CopyFromImportStrategy::executePgCopyFrom">executePgCopyFrom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/StrategyCsvImporter.php.html#15"><abbr title="Sigi\TempTableBundle\Service\Strategy\StrategyCsvImporter::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Strategy/StrategyCsvImporter.php.html#25"><abbr title="Sigi\TempTableBundle\Service\Strategy\StrategyCsvImporter::import">import</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Structures/TempTableConfig.php.html#8"><abbr title="Sigi\TempTableBundle\Service\Structures\TempTableConfig::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQuery.php.html#54"><abbr title="Sigi\TempTableBundle\Service\TempTableQuery::count">count</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQuery.php.html#76"><abbr title="Sigi\TempTableBundle\Service\TempTableQuery::executeRawQuery">executeRawQuery</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQuery.php.html#84"><abbr title="Sigi\TempTableBundle\Service\TempTableQuery::executeQueryBuilder">executeQueryBuilder</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQuery.php.html#92"><abbr title="Sigi\TempTableBundle\Service\TempTableQuery::executeQueryBuilderSingle">executeQueryBuilderSingle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQuery.php.html#100"><abbr title="Sigi\TempTableBundle\Service\TempTableQuery::getTableStructure">getTableStructure</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQuery.php.html#116"><abbr title="Sigi\TempTableBundle\Service\TempTableQuery::search">search</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQuery.php.html#145"><abbr title="Sigi\TempTableBundle\Service\TempTableQuery::getColumnStatistics">getColumnStatistics</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQuery.php.html#166"><abbr title="Sigi\TempTableBundle\Service\TempTableQuery::getDistinctValues">getDistinctValues</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQueryHelper.php.html#14"><abbr title="Sigi\TempTableBundle\Service\TempTableQueryHelper::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQueryHelper.php.html#22"><abbr title="Sigi\TempTableBundle\Service\TempTableQueryHelper::createPaginatedQuery">createPaginatedQuery</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQueryHelper.php.html#61"><abbr title="Sigi\TempTableBundle\Service\TempTableQueryHelper::createAggregateQuery">createAggregateQuery</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQueryHelper.php.html#89"><abbr title="Sigi\TempTableBundle\Service\TempTableQueryHelper::applyFilters">applyFilters</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQueryHelper.php.html#106"><abbr title="Sigi\TempTableBundle\Service\TempTableQueryHelper::applyComplexFilter">applyComplexFilter</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQueryHelper.php.html#180"><abbr title="Sigi\TempTableBundle\Service\TempTableQueryHelper::applyOrderBy">applyOrderBy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TempTableQueryHelper.php.html#187"><abbr title="Sigi\TempTableBundle\Service\TempTableQueryHelper::quoteName">quoteName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TypeGuesser.php.html#104"><abbr title="Sigi\TempTableBundle\Service\TypeGuesser::getIntegerTypeFallback">getIntegerTypeFallback</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TypeGuesser.php.html#175"><abbr title="Sigi\TempTableBundle\Service\TypeGuesser::requiresBigInt">requiresBigInt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TypeGuesser.php.html#137"><abbr title="Sigi\TempTableBundle\Service\TypeGuesser::determineOverallType">determineOverallType</abbr></a></td><td class="text-right">70%</td></tr>
+       <tr><td><a href="TypeGuesser.php.html#79"><abbr title="Sigi\TempTableBundle\Service\TypeGuesser::getIntegerType">getIntegerType</abbr></a></td><td class="text-right">71%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3 style="margin-top: 2rem;">Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+         <th class="text-right">Complexity</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="TempTableQueryHelper.php.html#106"><abbr title="Sigi\TempTableBundle\Service\TempTableQueryHelper::applyComplexFilter">applyComplexFilter</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">14</td><td class="text-right">210</td></tr>
+       <tr><td><a href="TypeGuesser.php.html#104"><abbr title="Sigi\TempTableBundle\Service\TypeGuesser::getIntegerTypeFallback">getIntegerTypeFallback</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">6</td><td class="text-right">42</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#87"><abbr title="Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy::insertBatch">insertBatch</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">5</td><td class="text-right">30</td></tr>
+       <tr><td><a href="Strategy/StrategyCsvImporter.php.html#25"><abbr title="Sigi\TempTableBundle\Service\Strategy\StrategyCsvImporter::import">import</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">5</td><td class="text-right">30</td></tr>
+       <tr><td><a href="TypeGuesser.php.html#137"><abbr title="Sigi\TempTableBundle\Service\TypeGuesser::determineOverallType">determineOverallType</abbr></a></td><td class="text-right">70.0%</td><td class="text-right">20</td><td class="text-right">30</td></tr>
+       <tr><td><a href="Database/TypeConverters/BigIntTypeConverter.php.html#8"><abbr title="Sigi\TempTableBundle\Service\Database\TypeConverters\BigIntTypeConverter::convert">convert</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">4</td><td class="text-right">20</td></tr>
+       <tr><td><a href="Database/TypeConverters/DecimalTypeConverter.php.html#8"><abbr title="Sigi\TempTableBundle\Service\Database\TypeConverters\DecimalTypeConverter::convert">convert</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">4</td><td class="text-right">20</td></tr>
+       <tr><td><a href="Database/TypeConverters/IntegerTypeConverter.php.html#8"><abbr title="Sigi\TempTableBundle\Service\Database\TypeConverters\IntegerTypeConverter::convert">convert</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">4</td><td class="text-right">20</td></tr>
+       <tr><td><a href="Database/TypeConverters/PostgreSqlTypeConverter.php.html#28"><abbr title="Sigi\TempTableBundle\Service\Database\TypeConverters\PostgreSqlTypeConverter::getPdoType">getPdoType</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">4</td><td class="text-right">20</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#48"><abbr title="Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy::processCsvInBatches">processCsvInBatches</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">4</td><td class="text-right">20</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#68"><abbr title="Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy::convertRowTypes">convertRowTypes</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">4</td><td class="text-right">20</td></tr>
+       <tr><td><a href="TempTableQuery.php.html#116"><abbr title="Sigi\TempTableBundle\Service\TempTableQuery::search">search</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">4</td><td class="text-right">20</td></tr>
+       <tr><td><a href="TempTableQueryHelper.php.html#61"><abbr title="Sigi\TempTableBundle\Service\TempTableQueryHelper::createAggregateQuery">createAggregateQuery</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">4</td><td class="text-right">20</td></tr>
+       <tr><td><a href="Database/DoctrineDatabaseConnection.php.html#42"><abbr title="Sigi\TempTableBundle\Service\Database\DoctrineDatabaseConnection::supportsCopyFrom">supportsCopyFrom</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">3</td><td class="text-right">12</td></tr>
+       <tr><td><a href="Database/Postgresql/ExpiredTableCleaner.php.html#21"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\ExpiredTableCleaner::cleanupExpiredTables">cleanupExpiredTables</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">3</td><td class="text-right">12</td></tr>
+       <tr><td><a href="Strategy/CopyFromImportStrategy.php.html#54"><abbr title="Sigi\TempTableBundle\Service\Strategy\CopyFromImportStrategy::importViaPgConnect">importViaPgConnect</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">3</td><td class="text-right">12</td></tr>
+       <tr><td><a href="TempTableQueryHelper.php.html#22"><abbr title="Sigi\TempTableBundle\Service\TempTableQueryHelper::createPaginatedQuery">createPaginatedQuery</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">3</td><td class="text-right">12</td></tr>
+       <tr><td><a href="TempTableQueryHelper.php.html#89"><abbr title="Sigi\TempTableBundle\Service\TempTableQueryHelper::applyFilters">applyFilters</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">3</td><td class="text-right">12</td></tr>
+       <tr><td><a href="TypeGuesser.php.html#175"><abbr title="Sigi\TempTableBundle\Service\TypeGuesser::requiresBigInt">requiresBigInt</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">3</td><td class="text-right">12</td></tr>
+       <tr><td><a href="Database/Postgresql/DatabaseTableRegistry.php.html#20"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\DatabaseTableRegistry::initialize">initialize</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">2</td><td class="text-right">6</td></tr>
+       <tr><td><a href="Database/Postgresql/DatabaseTableRegistry.php.html#38"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\DatabaseTableRegistry::register">register</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">2</td><td class="text-right">6</td></tr>
+       <tr><td><a href="Database/Postgresql/PostgreSqlTableCreator.php.html#35"><abbr title="Sigi\TempTableBundle\Service\Database\Postgresql\PostgreSqlTableCreator::buildCreateTableQuery">buildCreateTableQuery</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">2</td><td class="text-right">6</td></tr>
+       <tr><td><a href="Database/TypeConverters/StringTypeConverter.php.html#8"><abbr title="Sigi\TempTableBundle\Service\Database\TypeConverters\StringTypeConverter::convert">convert</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">2</td><td class="text-right">6</td></tr>
+       <tr><td><a href="Strategy/BatchInsertStrategy.php.html#32"><abbr title="Sigi\TempTableBundle\Service\Strategy\BatchInsertStrategy::import">import</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">2</td><td class="text-right">6</td></tr>
+       <tr><td><a href="Strategy/CopyFromImportStrategy.php.html#27"><abbr title="Sigi\TempTableBundle\Service\Strategy\CopyFromImportStrategy::import">import</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">2</td><td class="text-right">6</td></tr>
+       <tr><td><a href="Strategy/CopyFromImportStrategy.php.html#82"><abbr title="Sigi\TempTableBundle\Service\Strategy\CopyFromImportStrategy::executePgCopyFrom">executePgCopyFrom</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">2</td><td class="text-right">6</td></tr>
+       <tr><td><a href="TempTableQuery.php.html#166"><abbr title="Sigi\TempTableBundle\Service\TempTableQuery::getDistinctValues">getDistinctValues</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">2</td><td class="text-right">6</td></tr>
+       <tr><td><a href="TempTableQueryHelper.php.html#180"><abbr title="Sigi\TempTableBundle\Service\TempTableQueryHelper::applyOrderBy">applyOrderBy</abbr></a></td><td class="text-right">0.0%</td><td class="text-right">2</td><td class="text-right">6</td></tr>
+       <tr><td><a href="TypeGuesser.php.html#79"><abbr title="Sigi\TempTableBundle\Service\TypeGuesser::getIntegerType">getIntegerType</abbr></a></td><td class="text-right">71.4%</td><td class="text-right">6</td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 12.3.2</a> using <a href="https://www.php.net/" target="_top">PHP 8.4.10</a> and <a href="https://phpunit.de/">PHPUnit 12.3.5</a> at Sun Aug 31 17:07:57 UTC 2025.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/billboard.pkgd.min.js?v=12.3.2" type="text/javascript"></script>
+  <script type="application/json" id="complexity_class">[[0,12,"Database\/DoctrineDatabaseConnection.php.html#8","Sigi\\TempTableBundle\\Service\\Database\\DoctrineDatabaseConnection","156"],[0,3,"Database\/DoctrineStatementWrapper.php.html#8","Sigi\\TempTableBundle\\Service\\Database\\DoctrineStatementWrapper","12"],[0,7,"Database\/Postgresql\/DatabaseTableRegistry.php.html#10","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\DatabaseTableRegistry","56"],[0,5,"Database\/Postgresql\/ExpiredTableCleaner.php.html#12","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\ExpiredTableCleaner","30"],[0,5,"Database\/Postgresql\/PostgreSqlTableCreator.php.html#12","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\PostgreSqlTableCreator","30"],[0,4,"Database\/TypeConverters\/BigIntTypeConverter.php.html#6","Sigi\\TempTableBundle\\Service\\Database\\TypeConverters\\BigIntTypeConverter","20"],[0,4,"Database\/TypeConverters\/DecimalTypeConverter.php.html#6","Sigi\\TempTableBundle\\Service\\Database\\TypeConverters\\DecimalTypeConverter","20"],[0,4,"Database\/TypeConverters\/IntegerTypeConverter.php.html#6","Sigi\\TempTableBundle\\Service\\Database\\TypeConverters\\IntegerTypeConverter","20"],[0,6,"Database\/TypeConverters\/PostgreSqlTypeConverter.php.html#8","Sigi\\TempTableBundle\\Service\\Database\\TypeConverters\\PostgreSqlTypeConverter","42"],[0,2,"Database\/TypeConverters\/StringTypeConverter.php.html#6","Sigi\\TempTableBundle\\Service\\Database\\TypeConverters\\StringTypeConverter","6"],[0,18,"Strategy\/BatchInsertStrategy.php.html#13","Sigi\\TempTableBundle\\Service\\Strategy\\BatchInsertStrategy","342"],[0,11,"Strategy\/CopyFromImportStrategy.php.html#10","Sigi\\TempTableBundle\\Service\\Strategy\\CopyFromImportStrategy","132"],[0,6,"Strategy\/StrategyCsvImporter.php.html#10","Sigi\\TempTableBundle\\Service\\Strategy\\StrategyCsvImporter","42"],[0,1,"Structures\/TempTableConfig.php.html#6","Sigi\\TempTableBundle\\Service\\Structures\\TempTableConfig","2"],[0,28,"TempTableQueryHelper.php.html#10","Sigi\\TempTableBundle\\Service\\TempTableQueryHelper","812"],[30.136986301369863,23,"TempTableQuery.php.html#13","Sigi\\TempTableBundle\\Service\\TempTableQuery","203.38"],[67.1875,47,"TypeGuesser.php.html#6","Sigi\\TempTableBundle\\Service\\TypeGuesser","125.04"],[90.9090909090909,9,"Structures\/TableFactory.php.html#11","Sigi\\TempTableBundle\\Service\\Structures\\TableFactory","9.06"],[100,11,"Structures\/Column.php.html#6","Sigi\\TempTableBundle\\Service\\Structures\\Column","11"],[100,12,"Structures\/Table.php.html#8","Sigi\\TempTableBundle\\Service\\Structures\\Table","12"],[100,5,"TempTableManager.php.html#12","Sigi\\TempTableBundle\\Service\\TempTableManager","5"]]</script>
+  <script type="application/json" id="complexity_method">[[0,1,"Database\/DoctrineDatabaseConnection.php.html#10","Sigi\\TempTableBundle\\Service\\Database\\DoctrineDatabaseConnection::__construct","2"],[0,1,"Database\/DoctrineDatabaseConnection.php.html#12","Sigi\\TempTableBundle\\Service\\Database\\DoctrineDatabaseConnection::executeStatement","2"],[0,1,"Database\/DoctrineDatabaseConnection.php.html#17","Sigi\\TempTableBundle\\Service\\Database\\DoctrineDatabaseConnection::prepare","2"],[0,1,"Database\/DoctrineDatabaseConnection.php.html#22","Sigi\\TempTableBundle\\Service\\Database\\DoctrineDatabaseConnection::fetchFirstColumn","2"],[0,1,"Database\/DoctrineDatabaseConnection.php.html#27","Sigi\\TempTableBundle\\Service\\Database\\DoctrineDatabaseConnection::beginTransaction","2"],[0,1,"Database\/DoctrineDatabaseConnection.php.html#32","Sigi\\TempTableBundle\\Service\\Database\\DoctrineDatabaseConnection::commit","2"],[0,1,"Database\/DoctrineDatabaseConnection.php.html#37","Sigi\\TempTableBundle\\Service\\Database\\DoctrineDatabaseConnection::rollBack","2"],[0,3,"Database\/DoctrineDatabaseConnection.php.html#42","Sigi\\TempTableBundle\\Service\\Database\\DoctrineDatabaseConnection::supportsCopyFrom","12"],[0,1,"Database\/DoctrineDatabaseConnection.php.html#52","Sigi\\TempTableBundle\\Service\\Database\\DoctrineDatabaseConnection::getConnectionParams","2"],[0,1,"Database\/DoctrineDatabaseConnection.php.html#57","Sigi\\TempTableBundle\\Service\\Database\\DoctrineDatabaseConnection::getNativeConnection","2"],[0,1,"Database\/DoctrineStatementWrapper.php.html#10","Sigi\\TempTableBundle\\Service\\Database\\DoctrineStatementWrapper::__construct","2"],[0,1,"Database\/DoctrineStatementWrapper.php.html#12","Sigi\\TempTableBundle\\Service\\Database\\DoctrineStatementWrapper::bindValue","2"],[0,1,"Database\/DoctrineStatementWrapper.php.html#17","Sigi\\TempTableBundle\\Service\\Database\\DoctrineStatementWrapper::executeStatement","2"],[0,1,"Database\/Postgresql\/DatabaseTableRegistry.php.html#15","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\DatabaseTableRegistry::__construct","2"],[0,2,"Database\/Postgresql\/DatabaseTableRegistry.php.html#20","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\DatabaseTableRegistry::initialize","6"],[0,2,"Database\/Postgresql\/DatabaseTableRegistry.php.html#38","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\DatabaseTableRegistry::register","6"],[0,1,"Database\/Postgresql\/DatabaseTableRegistry.php.html#55","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\DatabaseTableRegistry::getExpiredTables","2"],[0,1,"Database\/Postgresql\/DatabaseTableRegistry.php.html#67","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\DatabaseTableRegistry::unregister","2"],[0,1,"Database\/Postgresql\/ExpiredTableCleaner.php.html#14","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\ExpiredTableCleaner::__construct","2"],[0,3,"Database\/Postgresql\/ExpiredTableCleaner.php.html#21","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\ExpiredTableCleaner::cleanupExpiredTables","12"],[0,1,"Database\/Postgresql\/ExpiredTableCleaner.php.html#39","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\ExpiredTableCleaner::dropTable","2"],[0,1,"Database\/Postgresql\/PostgreSqlTableCreator.php.html#14","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\PostgreSqlTableCreator::__construct","2"],[0,1,"Database\/Postgresql\/PostgreSqlTableCreator.php.html#21","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\PostgreSqlTableCreator::createFromCsv","2"],[0,2,"Database\/Postgresql\/PostgreSqlTableCreator.php.html#35","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\PostgreSqlTableCreator::buildCreateTableQuery","6"],[0,1,"Database\/Postgresql\/PostgreSqlTableCreator.php.html#49","Sigi\\TempTableBundle\\Service\\Database\\Postgresql\\PostgreSqlTableCreator::dropTableIfExists","2"],[0,4,"Database\/TypeConverters\/BigIntTypeConverter.php.html#8","Sigi\\TempTableBundle\\Service\\Database\\TypeConverters\\BigIntTypeConverter::convert","20"],[0,4,"Database\/TypeConverters\/DecimalTypeConverter.php.html#8","Sigi\\TempTableBundle\\Service\\Database\\TypeConverters\\DecimalTypeConverter::convert","20"],[0,4,"Database\/TypeConverters\/IntegerTypeConverter.php.html#8","Sigi\\TempTableBundle\\Service\\Database\\TypeConverters\\IntegerTypeConverter::convert","20"],[0,1,"Database\/TypeConverters\/PostgreSqlTypeConverter.php.html#12","Sigi\\TempTableBundle\\Service\\Database\\TypeConverters\\PostgreSqlTypeConverter::__construct","2"],[0,1,"Database\/TypeConverters\/PostgreSqlTypeConverter.php.html#22","Sigi\\TempTableBundle\\Service\\Database\\TypeConverters\\PostgreSqlTypeConverter::convert","2"],[0,4,"Database\/TypeConverters\/PostgreSqlTypeConverter.php.html#28","Sigi\\TempTableBundle\\Service\\Database\\TypeConverters\\PostgreSqlTypeConverter::getPdoType","20"],[0,2,"Database\/TypeConverters\/StringTypeConverter.php.html#8","Sigi\\TempTableBundle\\Service\\Database\\TypeConverters\\StringTypeConverter::convert","6"],[0,1,"Strategy\/BatchInsertStrategy.php.html#15","Sigi\\TempTableBundle\\Service\\Strategy\\BatchInsertStrategy::__construct","2"],[0,1,"Strategy\/BatchInsertStrategy.php.html#22","Sigi\\TempTableBundle\\Service\\Strategy\\BatchInsertStrategy::canHandle","2"],[0,1,"Strategy\/BatchInsertStrategy.php.html#27","Sigi\\TempTableBundle\\Service\\Strategy\\BatchInsertStrategy::getPriority","2"],[0,2,"Strategy\/BatchInsertStrategy.php.html#32","Sigi\\TempTableBundle\\Service\\Strategy\\BatchInsertStrategy::import","6"],[0,4,"Strategy\/BatchInsertStrategy.php.html#48","Sigi\\TempTableBundle\\Service\\Strategy\\BatchInsertStrategy::processCsvInBatches","20"],[0,4,"Strategy\/BatchInsertStrategy.php.html#68","Sigi\\TempTableBundle\\Service\\Strategy\\BatchInsertStrategy::convertRowTypes","20"],[0,5,"Strategy\/BatchInsertStrategy.php.html#87","Sigi\\TempTableBundle\\Service\\Strategy\\BatchInsertStrategy::insertBatch","30"],[0,1,"Strategy\/CopyFromImportStrategy.php.html#12","Sigi\\TempTableBundle\\Service\\Strategy\\CopyFromImportStrategy::__construct","2"],[0,1,"Strategy\/CopyFromImportStrategy.php.html#17","Sigi\\TempTableBundle\\Service\\Strategy\\CopyFromImportStrategy::canHandle","2"],[0,1,"Strategy\/CopyFromImportStrategy.php.html#22","Sigi\\TempTableBundle\\Service\\Strategy\\CopyFromImportStrategy::getPriority","2"],[0,2,"Strategy\/CopyFromImportStrategy.php.html#27","Sigi\\TempTableBundle\\Service\\Strategy\\CopyFromImportStrategy::import","6"],[0,1,"Strategy\/CopyFromImportStrategy.php.html#38","Sigi\\TempTableBundle\\Service\\Strategy\\CopyFromImportStrategy::importViaCopyFromDirect","2"],[0,3,"Strategy\/CopyFromImportStrategy.php.html#54","Sigi\\TempTableBundle\\Service\\Strategy\\CopyFromImportStrategy::importViaPgConnect","12"],[0,2,"Strategy\/CopyFromImportStrategy.php.html#82","Sigi\\TempTableBundle\\Service\\Strategy\\CopyFromImportStrategy::executePgCopyFrom","6"],[0,1,"Strategy\/StrategyCsvImporter.php.html#15","Sigi\\TempTableBundle\\Service\\Strategy\\StrategyCsvImporter::__construct","2"],[0,5,"Strategy\/StrategyCsvImporter.php.html#25","Sigi\\TempTableBundle\\Service\\Strategy\\StrategyCsvImporter::import","30"],[0,1,"Structures\/TempTableConfig.php.html#8","Sigi\\TempTableBundle\\Service\\Structures\\TempTableConfig::__construct","2"],[0,1,"TempTableQuery.php.html#54","Sigi\\TempTableBundle\\Service\\TempTableQuery::count","2"],[0,1,"TempTableQuery.php.html#76","Sigi\\TempTableBundle\\Service\\TempTableQuery::executeRawQuery","2"],[0,1,"TempTableQuery.php.html#84","Sigi\\TempTableBundle\\Service\\TempTableQuery::executeQueryBuilder","2"],[0,1,"TempTableQuery.php.html#92","Sigi\\TempTableBundle\\Service\\TempTableQuery::executeQueryBuilderSingle","2"],[0,1,"TempTableQuery.php.html#100","Sigi\\TempTableBundle\\Service\\TempTableQuery::getTableStructure","2"],[0,4,"TempTableQuery.php.html#116","Sigi\\TempTableBundle\\Service\\TempTableQuery::search","20"],[0,1,"TempTableQuery.php.html#145","Sigi\\TempTableBundle\\Service\\TempTableQuery::getColumnStatistics","2"],[0,2,"TempTableQuery.php.html#166","Sigi\\TempTableBundle\\Service\\TempTableQuery::getDistinctValues","6"],[0,1,"TempTableQueryHelper.php.html#14","Sigi\\TempTableBundle\\Service\\TempTableQueryHelper::__construct","2"],[0,3,"TempTableQueryHelper.php.html#22","Sigi\\TempTableBundle\\Service\\TempTableQueryHelper::createPaginatedQuery","12"],[0,4,"TempTableQueryHelper.php.html#61","Sigi\\TempTableBundle\\Service\\TempTableQueryHelper::createAggregateQuery","20"],[0,3,"TempTableQueryHelper.php.html#89","Sigi\\TempTableBundle\\Service\\TempTableQueryHelper::applyFilters","12"],[0,14,"TempTableQueryHelper.php.html#106","Sigi\\TempTableBundle\\Service\\TempTableQueryHelper::applyComplexFilter","210"],[0,2,"TempTableQueryHelper.php.html#180","Sigi\\TempTableBundle\\Service\\TempTableQueryHelper::applyOrderBy","6"],[0,1,"TempTableQueryHelper.php.html#187","Sigi\\TempTableBundle\\Service\\TempTableQueryHelper::quoteName","2"],[0,6,"TypeGuesser.php.html#104","Sigi\\TempTableBundle\\Service\\TypeGuesser::getIntegerTypeFallback","42"],[0,3,"TypeGuesser.php.html#175","Sigi\\TempTableBundle\\Service\\TypeGuesser::requiresBigInt","12"],[70,20,"TypeGuesser.php.html#137","Sigi\\TempTableBundle\\Service\\TypeGuesser::determineOverallType","30.80"],[71.42857142857143,6,"TypeGuesser.php.html#79","Sigi\\TempTableBundle\\Service\\TypeGuesser::getIntegerType","6.84"],[90.47619047619048,8,"Structures\/TableFactory.php.html#20","Sigi\\TempTableBundle\\Service\\Structures\\TableFactory::analyzeStructure","8.06"],[100,1,"Structures\/Column.php.html#12","Sigi\\TempTableBundle\\Service\\Structures\\Column::__construct","1"],[100,1,"Structures\/Column.php.html#17","Sigi\\TempTableBundle\\Service\\Structures\\Column::getType","1"],[100,1,"Structures\/Column.php.html#22","Sigi\\TempTableBundle\\Service\\Structures\\Column::setType","1"],[100,1,"Structures\/Column.php.html#29","Sigi\\TempTableBundle\\Service\\Structures\\Column::getIndex","1"],[100,1,"Structures\/Column.php.html#34","Sigi\\TempTableBundle\\Service\\Structures\\Column::setIndex","1"],[100,2,"Structures\/Column.php.html#41","Sigi\\TempTableBundle\\Service\\Structures\\Column::addValue","2"],[100,1,"Structures\/Column.php.html#51","Sigi\\TempTableBundle\\Service\\Structures\\Column::getValues","1"],[100,1,"Structures\/Column.php.html#56","Sigi\\TempTableBundle\\Service\\Structures\\Column::getName","1"],[100,2,"Structures\/Column.php.html#64","Sigi\\TempTableBundle\\Service\\Structures\\Column::sanitizeName","2"],[100,1,"Structures\/Table.php.html#12","Sigi\\TempTableBundle\\Service\\Structures\\Table::__construct","1"],[100,1,"Structures\/Table.php.html#17","Sigi\\TempTableBundle\\Service\\Structures\\Table::getName","1"],[100,1,"Structures\/Table.php.html#22","Sigi\\TempTableBundle\\Service\\Structures\\Table::getPrefix","1"],[100,1,"Structures\/Table.php.html#27","Sigi\\TempTableBundle\\Service\\Structures\\Table::getFullName","1"],[100,2,"Structures\/Table.php.html#32","Sigi\\TempTableBundle\\Service\\Structures\\Table::addColumn","2"],[100,1,"Structures\/Table.php.html#42","Sigi\\TempTableBundle\\Service\\Structures\\Table::getColumns","1"],[100,1,"Structures\/Table.php.html#47","Sigi\\TempTableBundle\\Service\\Structures\\Table::removeColumn","1"],[100,3,"Structures\/Table.php.html#54","Sigi\\TempTableBundle\\Service\\Structures\\Table::getColumnsByName","3"],[100,1,"Structures\/Table.php.html#65","Sigi\\TempTableBundle\\Service\\Structures\\Table::getColumnByIndex","1"],[100,1,"Structures\/TableFactory.php.html#13","Sigi\\TempTableBundle\\Service\\Structures\\TableFactory::__construct","1"],[100,1,"TempTableManager.php.html#14","Sigi\\TempTableBundle\\Service\\TempTableManager::__construct","1"],[100,2,"TempTableManager.php.html#22","Sigi\\TempTableBundle\\Service\\TempTableManager::createTableFromCsv","2"],[100,1,"TempTableManager.php.html#40","Sigi\\TempTableBundle\\Service\\TempTableManager::cleanupExpiredTables","1"],[100,1,"TempTableManager.php.html#45","Sigi\\TempTableBundle\\Service\\TempTableManager::dropTable","1"],[100,1,"TempTableQuery.php.html#17","Sigi\\TempTableBundle\\Service\\TempTableQuery::__construct","1"],[100,1,"TempTableQuery.php.html#22","Sigi\\TempTableBundle\\Service\\TempTableQuery::getQb","1"],[100,4,"TempTableQuery.php.html#29","Sigi\\TempTableBundle\\Service\\TempTableQuery::query","4"],[100,1,"TempTableQuery.php.html#68","Sigi\\TempTableBundle\\Service\\TempTableQuery::createQueryBuilder","1"],[100,1,"TempTableQuery.php.html#183","Sigi\\TempTableBundle\\Service\\TempTableQuery::createSelectQueryBuilder","1"],[100,2,"TempTableQuery.php.html#193","Sigi\\TempTableBundle\\Service\\TempTableQuery::addConditions","2"],[100,1,"TempTableQuery.php.html#208","Sigi\\TempTableBundle\\Service\\TempTableQuery::quoteName","1"],[100,4,"TypeGuesser.php.html#21","Sigi\\TempTableBundle\\Service\\TypeGuesser::guessTypes","4"],[100,3,"TypeGuesser.php.html#43","Sigi\\TempTableBundle\\Service\\TypeGuesser::guessType","3"],[100,3,"TypeGuesser.php.html#60","Sigi\\TempTableBundle\\Service\\TypeGuesser::getNumericType","3"],[100,2,"TypeGuesser.php.html#128","Sigi\\TempTableBundle\\Service\\TypeGuesser::getStringType","2"]]</script>
+  <script type="text/javascript" defer>
+  const barLabels = [
+    '0%',
+    '0-10%',
+    '10-20%',
+    '20-30%',
+    '30-40%',
+    '40-50%',
+    '50-60%',
+    '60-70%',
+    '70-80%',
+    '80-90%',
+    '90-100%',
+    '100%'
+  ];
+  const barConfig = (name, fullName, values) => ({
+    axis: {
+      x: {
+        type: "category",
+        categories: barLabels,
+      },
+      y: {
+        label: {
+          text: `#${name}`,
+          position: 'outer-top',
+        },
+      },
+    },
+    bindto: `#${name}CoverageDistribution`,
+    data: {
+      columns: [
+        [fullName].concat(values),
+      ],
+      colors: {
+        [fullName]: "rgba(69, 114, 167, 0.75)",
+      },
+      type: "bar",
+    },
+    bar: {
+      width: {
+        ratio: 0.9,
+      },
+    },
+    grid: {
+      focus: {
+        show: false,
+      },
+      x: {
+        show: true,
+      },
+      y: {
+        show: true,
+      },
+    },
+    legend: {
+      show: false,
+    },
+    tooltip: {
+      contents: function (data) {
+        return `<table class="bb-tooltip"><tbody>
+            <tr><th colspan="2">Coverage ${barLabels[data[0].x]}</th></tr>
+            <tr><td class="value">${data[0].value} ${name}</td></tr>
+          </tbody></table>`;
+      },
+      grouped: false,
+    },
+  });
+  bb.generate(
+    barConfig('classes', "Class Coverage", [15,0,0,0,1,0,0,1,0,0,1,3])
+  );
+  bb.generate(
+    barConfig('methods', "Method Coverage", [66,0,0,0,0,0,0,0,2,0,1,34])
+  );
+
+  const scatterConfig = (name, complexityData) => ({
+    axis: {
+      x: {
+        label: {
+          text: 'Code Coverage (in percent)',
+          position: 'outer-right',
+        },
+        tick: {
+          values: [0, 20, 40, 60, 80, 100],
+        },
+      },
+      y: {
+        label: {
+          text: 'Cyclomatic Complexity',
+          position: 'outer-top',
+        },
+        min: 0,
+        padding: {
+          bottom: 0,
+          top: 5,
+        },
+      },
+    },
+    bindto: `#${name}Complexity`,
+    data: {
+      columns: [
+        ["complexity_x"].concat(complexityData.map(d => d[0])),
+        ["complexity"].concat(complexityData.map(d => d[1])),
+      ],
+      onclick: function(data, element) {
+        window.location = complexityData[data.index][2];
+      },
+      type: "scatter",
+      xs: {
+        "complexity": "complexity_x",
+      },
+    },
+    grid: {
+      focus: {
+        show: true,
+        y: true,
+      },
+      x: {
+        show: true,
+      },
+      y: {
+        show: true,
+      },
+    },
+    legend: {
+      show: false,
+    },
+    tooltip: {
+      contents: function (data) {
+        const coverage = Math.round(data[0].x);
+        const complexity = data[0].value;
+        const targetName = complexityData[data[0].index][3];
+        const crap = complexityData[data[0].index][4];
+        return `<table class="bb-tooltip"><tbody>
+            <tr><th colspan="2">${targetName}</th></tr>
+            <tr class="bb-tooltip-name-complexity"><td>Coverage</td><td class="name">${coverage}%</td></tr>
+            <tr class="bb-tooltip-name-complexity"><td>Complexity</td><td class="value">${complexity}</td></tr>
+            <tr class="bb-tooltip-name-complexity"><td>Crap</td><td class="value">${crap}</td></tr>
+          </tbody></table>`;
+      },
+      grouped: false,
+    },
+  });
+  const classComplexityData = JSON.parse(document.getElementById('complexity_class').textContent);
+  bb.generate(
+    scatterConfig("class", classComplexityData)
+  );
+  const methodComplexityData = JSON.parse(document.getElementById('complexity_method').textContent);
+  bb.generate(
+    scatterConfig("method", methodComplexityData),
+  );
+  </script>
+ </body>
+</html>
