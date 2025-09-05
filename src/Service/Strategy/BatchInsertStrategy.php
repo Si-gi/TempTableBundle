@@ -4,11 +4,10 @@ declare(strict_types=1);
 namespace Sigi\TempTableBundle\Service\Strategy;
 
 use Psr\Log\LoggerInterface;
-use Sigi\TempTableBundle\Service\Structures\TempTableConfig;
-use Sigi\TempTableBundle\Service\Structures\Table;
 use Sigi\TempTableBundle\Service\Database\DatabaseConnectionInterface;
 use Sigi\TempTableBundle\Service\Database\TypeConverters\TypeConverterInterface;
-
+use Sigi\TempTableBundle\Service\Structures\Table;
+use Sigi\TempTableBundle\Service\Structures\TempTableConfig;
 
 class BatchInsertStrategy implements CsvImportStrategyInterface
 {
@@ -17,7 +16,8 @@ class BatchInsertStrategy implements CsvImportStrategyInterface
         private TypeConverterInterface $typeConverter,
         private TempTableConfig $config,
         private LoggerInterface $logger
-    ) {}
+    ) {
+    }
 
     public function canHandle(DatabaseConnectionInterface $connection): bool
     {
@@ -48,13 +48,13 @@ class BatchInsertStrategy implements CsvImportStrategyInterface
     private function processCsvInBatches($handle, Table $table, string $delimiter): void
     {
         $batch = [];
-        $columns = array_map(fn($col) => '"' . $col->getName() . '"', $table->getColumns()->toArray());
+        $columns = array_map(static fn ($col) => '"'.$col->getName().'"', $table->getColumns()->toArray());
 
         while (($row = fgetcsv($handle, 0, $delimiter)) !== false) {
             $typedRow = $this->convertRowTypes($row, $table);
             $batch[] = $typedRow;
 
-            if (count($batch) >= $this->config->batchSize) {
+            if (\count($batch) >= $this->config->batchSize) {
                 $this->insertBatch($table, $columns, $batch);
                 $batch = [];
             }
@@ -68,10 +68,10 @@ class BatchInsertStrategy implements CsvImportStrategyInterface
     private function convertRowTypes(array $row, Table $table): array
     {
         // Adjust row length to match table columns
-        while (count($row) > count($table->getColumns())) {
+        while (\count($row) > \count($table->getColumns())) {
             array_pop($row);
         }
-        while (count($row) < count($table->getColumns())) {
+        while (\count($row) < \count($table->getColumns())) {
             $row[] = null;
         }
 
@@ -98,17 +98,17 @@ class BatchInsertStrategy implements CsvImportStrategyInterface
         foreach ($batch as $row) {
             $placeholders = [];
             foreach ($row as $colIndex => $value) {
-                $placeholder = ':param' . $paramIndex++;
+                $placeholder = ':param'.$paramIndex++;
                 $placeholders[] = $placeholder;
                 $values[$placeholder] = [
                     'value' => $value,
                     'type' => $this->typeConverter->getPdoType($table->getColumnByIndex($colIndex)->getType()),
                 ];
             }
-            $placeholderRows[] = '(' . implode(', ', $placeholders) . ')';
+            $placeholderRows[] = '('.implode(', ', $placeholders).')';
         }
 
-        $sql = sprintf(
+        $sql = \sprintf(
             'INSERT INTO "%s" (%s) VALUES %s',
             $table->getFullName(),
             $columnList,

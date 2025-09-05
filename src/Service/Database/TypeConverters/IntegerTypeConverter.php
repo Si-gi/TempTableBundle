@@ -11,6 +11,6 @@ class IntegerTypeConverter implements SingleTypeConverterInterface
             return null;
         }
 
-        return false !== filter_var($value, FILTER_VALIDATE_INT) ? (int) $value : null;
+        return false !== filter_var($value, \FILTER_VALIDATE_INT) ? (int) $value : null;
     }
 }

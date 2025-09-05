@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Sigi\TempTableBundle\Service\Strategy;
 
 use Psr\Log\LoggerInterface;
-use Sigi\TempTableBundle\Service\Structures\Table;
 use Sigi\TempTableBundle\Service\Database\DatabaseConnectionInterface;
+use Sigi\TempTableBundle\Service\Structures\Table;
 
 class StrategyCsvImporter implements CsvImporterInterface
 {
@@ -19,7 +19,7 @@ class StrategyCsvImporter implements CsvImporterInterface
     ) {
         $this->strategies = $strategies;
         // filter by priority
-        usort($this->strategies, fn($a, $b) => $a->getPriority() <=> $b->getPriority());
+        usort($this->strategies, static fn ($a, $b) => $a->getPriority() <=> $b->getPriority());
     }
 
     public function import(string $csvFilePath, Table $table, string $delimiter): void
@@ -37,24 +37,22 @@ class StrategyCsvImporter implements CsvImporterInterface
                 try {
                     $strategy->import($csvFilePath, $table, $delimiter);
                     $this->connection->commit();
+
                     return;
                 } catch (\Exception $e) {
-                    $this->logger->warning(sprintf(
+                    $this->logger->warning(\sprintf(
                         'Strategy %s failed: %s',
-                        get_class($strategy),
+                        $strategy::class,
                         $e->getMessage()
                     ));
                     $lastException = $e;
                 }
             }
 
-            throw new \RuntimeException(
-                'All import strategies failed',
-                0,
-                $lastException
-            );
+            throw new \RuntimeException('All import strategies failed', 0, $lastException);
         } catch (\Exception $e) {
             $this->connection->rollBack();
+
             throw $e;
         }
     }

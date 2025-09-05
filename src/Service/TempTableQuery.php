@@ -14,6 +14,7 @@ class TempTableQuery
 {
     private Connection $connection;
     private QueryBuilder $qb;
+
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
@@ -23,13 +24,14 @@ class TempTableQuery
     {
         return $this->qb;
     }
+
     /**
      * Exécute une requête SELECT sur une table temporaire
      */
     public function query(string $tableName, array $columnsNames = [], ?int $limit = null, int $offset = 0): self
     {
         $this->qb = $this->createSelectQueryBuilder($tableName);
-        if (empty($columnsNames)){
+        if (empty($columnsNames)) {
             $this->qb->select('*');
         } else {
             $this->qb->select(implode(',', $columnsNames));

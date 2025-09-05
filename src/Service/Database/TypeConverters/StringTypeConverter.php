@@ -7,6 +7,6 @@ class StringTypeConverter implements SingleTypeConverterInterface
 {
     public function convert(mixed $value): mixed
     {
-        return $value === null ? null : (string) $value;
+        return null === $value ? null : (string) $value;
     }
 }

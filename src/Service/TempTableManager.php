@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Sigi\TempTableBundle\Service;
 
 use Psr\Log\LoggerInterface;
-use Sigi\TempTableBundle\Service\Strategy\CsvImporterInterface;
 use Sigi\TempTableBundle\Service\Database\TableCleanerInterface;
 use Sigi\TempTableBundle\Service\Database\TableCreatorInterface;
 use Sigi\TempTableBundle\Service\Database\TableRegistryInterface;
+use Sigi\TempTableBundle\Service\Strategy\CsvImporterInterface;
 
 class TempTableManager
 {
@@ -17,7 +17,8 @@ class TempTableManager
         private TableRegistryInterface $tableRegistry,
         private TableCleanerInterface $tableCleaner,
         private LoggerInterface $logger
-    ) {}
+    ) {
+    }
 
     public function createTableFromCsv(string $csvFilePath, string $tableName, ?string $delimiter = ','): string
     {
@@ -29,10 +30,11 @@ class TempTableManager
             $this->tableRegistry->register($table->getFullName());
 
             $this->logger->info("Temp table created successfully: {$table->getFullName()}");
-            return $table->getFullName();
 
+            return $table->getFullName();
         } catch (\Exception $e) {
-            $this->logger->error("Error creating table from CSV: " . $e->getMessage());
+            $this->logger->error('Error creating table from CSV: '.$e->getMessage());
+
             throw $e;
         }
     }
@@ -47,5 +49,5 @@ class TempTableManager
         $this->tableCleaner->dropTable($tableName);
     }
 }
-//37Hp/z8Dk$2;
-//youdontneedit
+// 37Hp/z8Dk$2;
+// youdontneedit

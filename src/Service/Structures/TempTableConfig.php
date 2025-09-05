@@ -10,5 +10,6 @@ class TempTableConfig
         public readonly int $retentionHours,
         public readonly int $batchSize = 1000,
         public readonly int $connectionTimeout = 20
-    ) {}
+    ) {
+    }
 }

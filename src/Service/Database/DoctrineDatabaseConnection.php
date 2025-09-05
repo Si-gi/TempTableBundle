@@ -7,7 +7,9 @@ use Doctrine\DBAL\Connection;
 
 class DoctrineDatabaseConnection implements DatabaseConnectionInterface
 {
-    public function __construct(private Connection $connection) {}
+    public function __construct(private Connection $connection)
+    {
+    }
 
     public function executeStatement(string $sql, array $params = []): int
     {
@@ -43,6 +45,7 @@ class DoctrineDatabaseConnection implements DatabaseConnectionInterface
     {
         try {
             $pdo = $this->connection->getNativeConnection();
+
             return ($pdo instanceof \PDO) && ('pgsql' === $pdo->getAttribute(\PDO::ATTR_DRIVER_NAME));
         } catch (\Exception) {
             return false;

@@ -22,6 +22,7 @@ class PostgreSqlTypeConverter implements TypeConverterInterface
     public function convert(mixed $value, string $columnType): mixed
     {
         $converter = $this->converters[strtoupper($columnType)] ?? new StringTypeConverter();
+
         return $converter->convert($value);
     }
 
