@@ -1,8 +1,9 @@
-"# TempTableBundle" 
+# TempTableBundle
+This bundle aim to manage table database which are not entity
+# How to import a csv as Table
 
-#Exemple
+```
 
-'''
 {
     // autowiring
     public function __construct(private TempTableManager $tempTable,
@@ -38,7 +39,19 @@
         );
  
         $tempTableManager ->createTableFromCsv(__DIR__."/CsvTest.csv", "test");
+
+```
+
+# How to fetch data using the bundle:
+```
+    public function fetchData(Connection $doctrineConnection): int
+    {
+
+        $query = new TempTableQuery($doctrineConnection);
+        $conditions = ['col_453' => "v0nMqky1BP"];
+        $query->query("tmptemp_test", ["col_453"])->addConditions($conditions);
+        $results =$query->getQb()->executeQuery()->fetchAllAssociative();
+        dump($results);
         return Command::FAILURE;
     }
-}
-    '''
+```
